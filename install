@@ -19,6 +19,8 @@ boost_dir=${boost_version}".tar.gz"
 
 cpu_cores=$(grep 'cpu cores' /proc/cpuinfo |uniq |awk -F : '{print $2}' |sed 's/^[ \t]*//g')
 
+
+
 mkdir -p /data/www;
 mkdir -p /data/mysql;
 
@@ -134,3 +136,10 @@ echo "export PATH" >> /etc/profile;
 
 echo "读写配置完成"
 
+rm -rf $php_version;
+rm -rf $apache_version;
+rm -rf $apr_version;
+rm -rf $apr_util_version;
+rm -rf $nginx_version;
+rm -rf $mysql_version;
+rm -rf $boost_version;
