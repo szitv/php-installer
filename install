@@ -97,7 +97,7 @@ else
 fi
 
 mv /etc/my.cnf /etc/my.cnf.lzd
-cp conf/my.cnf /etc/my.cnf
+cp ../conf/my.cnf /etc/my.cnf
 
 /usr/local/mysql/bin/mysqld --initialize --user=mysql --datadir=${mysql_data_path} --basedir=/usr/local/mysql --socket=/tmp/mysql.sock
 
@@ -108,7 +108,9 @@ echo "读写配置中，请稍后"
 mv /etc/php.ini /etc/php.ini.lzd
 cp conf/php.ini /etc/php.ini
 cp bin/mysqld /etc/init.d/mysqld
-
+cp conf/php-fpm.conf /usr/local/php/etc/php-fpm.conf
+mv /usr/local/nginx/conf/nginx.conf /usr/local/nginx/conf/nginx.conf.lzd
+cp conf/nginx.conf /usr/local/nginx/conf/nginx.conf
 
 echo "<?php phpinfo();" >> ${www_path}/index.php
 echo "PATH=$PATH:/usr/local/php/bin:/usr/local/mysql/bin" >> /etc/profile
@@ -124,5 +126,5 @@ rm -rf $boost_version
 #变更用户组
 chown -R www:www /usr/local/nginx
 chown -R www:www /usr/local/php
-chown -R www:www /usr/local/mysql
-chown -R www:www ${mysql_data_path}
+chown -R mysql:mysql /usr/local/mysql
+chown -R mysql:mysql ${mysql_data_path}
